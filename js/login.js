@@ -7,7 +7,7 @@ module.exports = function loginModule(model) {
         var input = req.body;
         model.User.findOne({
             where: {
-                name: input.name,
+                email: input.email,
                 password: input.password
             }
         }).then(function (user) {
