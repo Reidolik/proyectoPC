@@ -11,7 +11,6 @@ const PORT = process.env.PORT || 4001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 var model = {};
 model.sequelize = sequelize;
 
@@ -41,6 +40,8 @@ app.use('/', require('./js/product')(model));
 app.use('/', require('./js/category')(model));
 app.use('/', require('./js/user')(model));
 app.use('/', require('./js/login')(model));
+
+app.use(express.static('public'));
 
 
 app.listen(PORT, () => {
