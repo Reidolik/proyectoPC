@@ -20,11 +20,13 @@ angular.module('myNameApp')
         //obtener productos de la BD
         $scope.id = -1;
         $scope.products = [];
+        $scope.prodCat = [];
         $http.get('http://localhost:4001/product')
             .then(function (data) {
                 console.log(data);
                 $scope.products = data.data;
                 console.log($scope.products);
+                updateCategoryTable();
             }).catch(err => {
                 console.log(err);
             });
@@ -38,6 +40,7 @@ angular.module('myNameApp')
             }).catch(err => {
                 console.log(err);
             });
+
         //actualizar datos de tabla
         function updateTable() {
             $http.get('http://localhost:4001/product')
@@ -45,9 +48,27 @@ angular.module('myNameApp')
                     console.log(data);
                     $scope.products = data.data;
                     console.log($scope.products);
+                    updateCategoryTable();
                 }).catch(err => {
                     console.log(err);
                 });
+        }
+        function updateCategoryTable() {
+            if ($scope.prodCat.length>0) {
+                $scope.prodCat = [];
+                updateCategoryTable();
+            } else {
+                for (let index = 0; index <= $scope.products.length; index++) {
+                    $http.get('http://localhost:4001/category/' + $scope.products[index].categoryId)
+                        .then(function (data) {
+                            console.log(data);
+                            $scope.prodCat.push(data.data);
+                            console.log($scope.prodCat);
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                }
+            }
         }
         //Agregar nuevo producto a la BD
         $scope.newProduct = {};
