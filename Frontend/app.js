@@ -41,8 +41,7 @@ app.use('/', require('./js/category')(model));
 app.use('/', require('./js/user')(model));
 app.use('/', require('./js/login')(model));
 
-app.use(express.static('public'));
-
+app.use(express.static('../Backend'));
 
 app.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
