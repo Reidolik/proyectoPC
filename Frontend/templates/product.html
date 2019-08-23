@@ -62,7 +62,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-sm" style="width:50%;float:left">
+                <table class="table table-striped table-sm col-2" style="width:50%;float:left">
                     <thead>
                         <tr>
                             <th>category name</th>
@@ -96,13 +96,13 @@
                     </div>
                     <div class="col-4 form-group">
                         <label>Quantity</label>
-                        <input class="form-control" type="text" placeholder="Price for the product"
+                        <input class="form-control" type="text" placeholder="Quantity of the product"
                             ng-model="newProduct.quantity">
                     </div>
                     <div class="col-4 form-group">
-                        <label>Category ID</label>
+                        <label>Choose a category</label>
                         <select class="form-control" id="catID" ng-model="newProduct.categoryId">
-                            <option ng-repeat="category in categories">{{category.id}}</option>
+                            <option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
                         </select>
                     </div>
                 </div>
